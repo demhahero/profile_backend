@@ -162,10 +162,10 @@ if($_GET["do"]=="verify_email"){
 	$code = isset($_GET["code"]) ? $_GET["code"] : "";
 	$email = isset($_GET["email"]) ? $_GET["email"] : "";
 
-	$sql = "SELECT * FROM `profiles` where `email`='".$email."' and `email_verificatiom_code`='".$code."'";
-	$result = $mysqli->query($sql);
+	//$sql = "SELECT * FROM `profiles` where `email`='".$email."' and `email_verificatiom_code`='".$code."'";
+	//$result = $mysqli->query($sql);
 
-	if($result->num_rows == 1){
+	if($code == $email_activation_code){
 		$data["result"] = true;		
 	}
 	else{
@@ -192,7 +192,7 @@ if($_GET["do"]=="check_email"){
 		$data["result"] = true;
 		$to = $_GET["email"];
 		$subject = "Serapeum :: Activation Code";
-		$txt = "1234";
+		$txt = $email_activation_code;
 		$headers = "From: webmaster@serapeum.io";
 
 		mail($to,$subject,$txt,$headers);
