@@ -1,22 +1,16 @@
 <?php
 require_once('vendor/autoload.php');
+include "config.php";
 
 class Sign{
 	private $privateKey;
 	private $publicKey;
 	
-	function __construct(){
+	private $privateKey_string = "";
+
+	function __construct($privateKey_string){
 		# Generate privateKey from PEM string
-		$this->privateKey = EllipticCurve\PrivateKey::fromPem("
-		-----BEGIN EC PARAMETERS-----
-		BgUrgQQACg==
-		-----END EC PARAMETERS-----
-		-----BEGIN EC PRIVATE KEY-----
-		MHQCAQEEIEaC/MS3PZm3jyMd8wz7QoejmqF8gqbX5lriHhpzXmHToAcGBSuBBAAK
-		oUQDQgAEMCg/+PCT2nL+p1xXZpB7kMybjf1EHgq/RSx/RpDRUjtX7YrYxTHDpAoh
-		UAQFUk3nzAXpnJ3nA8KPYJ41xev5yw==
-		-----END EC PRIVATE KEY-----
-		");
+		$this->privateKey = EllipticCurve\PrivateKey::fromPem($privateKey_string);
 
 		# To double check if message matches the signature
 		$this->publicKey = EllipticCurve\PublicKey::fromPem("

@@ -5,8 +5,7 @@ header("Access-Control-Allow-Methods: PUT, GET, POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
 include "ecdsa.php";
-
-$mysqli = new mysqli("localhost","root","","profile");
+include "config.php";
 
 // Check connection
 if ($mysqli -> connect_errno) {
@@ -238,12 +237,14 @@ if($_GET["do"]=="search"){
 }
 
 function hash_value($content){
-	$sign = new Sign();
+	global $privateKey_string;
+	$sign = new Sign($privateKey_string);
 	return $sign->signJSON($content);
 }
 
 function hash_verify($content,$signature){
-	$sign = new Sign();
+	global $privateKey_string;
+	$sign = new Sign($privateKey_string);
 	return $sign->verify($content, $signature);
 }
 ?>
