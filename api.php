@@ -13,6 +13,8 @@ if ($mysqli -> connect_errno) {
   exit();
 }
 
+$email_activation_code = "1234";
+
 if($_GET["do"]=="get_profile"){
 	$data = [];
 	
@@ -167,7 +169,7 @@ if($_GET["do"]=="verify_email"){
 		$data["result"] = true;		
 	}
 	else{
-		$data["result"] = true; //false
+		$data["result"] = false;
 	}
 
 	http_response_code(200);
@@ -188,6 +190,12 @@ if($_GET["do"]=="check_email"){
 	}
 	else{
 		$data["result"] = true;
+		$to = $_GET["email"];
+		$subject = "Serapeum :: Activation Code";
+		$txt = "1234";
+		$headers = "From: webmaster@serapeum.io";
+
+		mail($to,$subject,$txt,$headers);
 	}
 
 	http_response_code(200);
