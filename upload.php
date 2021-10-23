@@ -24,7 +24,7 @@ if($_FILES['picture'])
     }else 
     {
         $random_name = $_GET['address'].".".pathinfo($avatar_name, PATHINFO_EXTENSION);
-        $upload_name = $upload_dir.strtolower($random_name);
+        $upload_name = $upload_dir.$random_name;
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
     
         if(move_uploaded_file($avatar_tmp_name , $upload_name)) {
