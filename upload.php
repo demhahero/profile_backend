@@ -3,6 +3,7 @@ header('Content-Type: application/json; charset=utf-8');
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: PUT, GET, POST");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+include "config.php";
 
 $response = array();
 $upload_dir = 'uploads/';
@@ -31,7 +32,7 @@ if($_FILES['picture'])
                 "status" => "success",
                 "error" => false,
                 "message" => "File uploaded successfully",
-                "url" => $server_url."/".$upload_name
+                "url" => $profile_picture_url.$upload_name
               );
         }else
         {
