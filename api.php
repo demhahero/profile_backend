@@ -42,7 +42,8 @@ if($_GET["do"]=="get_profile"){
 		$to_hash = array(
 			"id"=> $data["id"],
 			"content" => $data["content"],
-			"email" => $data["email"]
+			"email" => $data["email"],
+			"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
 		);
 		$data["verified"] = hash_verify($to_hash, $hash);
 	}
@@ -80,7 +81,8 @@ if($_GET["do"]=="update"){
 	$to_hash = array(
 		"id"=> $id,
 		"content" => $content,
-		"email" => $email
+		"email" => $email,
+		"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
 	);
 	$hash = "";
 
@@ -118,7 +120,8 @@ if($_GET["do"]=="get_hash"){
 	$to_hash = array(
 		"id"=> $id,
 		"content" => $content,
-		"email" => $email
+		"email" => $email,
+		"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
 	);
 	$hash = hash_value($to_hash);
 
@@ -144,7 +147,8 @@ if($_GET["do"]=="get_hash_for_user"){
 		$to_hash = array(
 			"id"=> $row["id"],
 			"content" => $content,
-			"email" => $row["email"]
+			"email" => $row["email"],
+			"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
 		);
 		$hash = hash_value($to_hash);
 	}

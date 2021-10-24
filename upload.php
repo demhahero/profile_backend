@@ -6,7 +6,6 @@ header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Ac
 include "config.php";
 
 $response = array();
-$upload_dir = 'uploads/';
 
 if($_FILES['picture'])
 {
