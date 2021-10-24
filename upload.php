@@ -23,7 +23,7 @@ if($_FILES['picture'])
         );
     }else 
     {
-        $random_name = $_GET['address'].".".pathinfo($avatar_name, PATHINFO_EXTENSION);
+        $random_name = $_GET['address'].".png";
         $upload_name = $upload_dir.$random_name;
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
     
