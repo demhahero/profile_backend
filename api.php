@@ -20,8 +20,8 @@ if($_GET["do"]=="get_profile"){
 	
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
 	$address = isset($_GET["address"]) ? $_GET["address"] : "";
-	$hash = isset($_POST["hash"]) ? $_POST["hash"] : "";
-	$hash = str_replace(" ", "+", $hash);
+	$json_post = json_decode( file_get_contents('php://input') );
+	$hash = $json_post->hash;
 
 	if($id !== "")
 		$sql = "SELECT * FROM `profiles` where `id`='".$id."'";
