@@ -83,7 +83,7 @@ if($_GET["do"]=="update"){
 		"id"=> $id,
 		"content" => $content,
 		"email" => $email,
-		"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
+		"profile_picture" => hash_file('md5', $upload_dir.$address.".png")
 	);
 	$hash = "";
 
@@ -100,7 +100,7 @@ if($_GET["do"]=="update"){
 	}
 	else{
 		$sql = "Insert into `profiles` (`id`, `hash`, `content`, `address`, `email`, `phone`, `profile_picture_hash`) 
-		values ('".$id."', '".$hash."', '".$content."', '".$address."', '".$email."', 0, '".hash_file('md5', $upload_dir.$data["address"].".png")."')";
+		values ('".$id."', '".$hash."', '".$content."', '".$address."', '".$email."', 0, '".hash_file('md5', $upload_dir.$address.".png")."')";
 		$result = $mysqli->query($sql);
 		$data["result"] = $result;
 		$data["hash"] = $hash;
