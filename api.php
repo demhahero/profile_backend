@@ -123,13 +123,13 @@ if($_GET["do"]=="get_hash"){
 		"id"=> $id,
 		"content" => $content,
 		"email" => $email,
-		"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
+		"profile_picture" => hash_file('md5', $upload_dir.$address.".png")
 	);
 	$hash = hash_value($to_hash);
 
 	$data["result"] = true;
 	$data["hash"] = $hash;
-	$data["picture_hash"] = hash_file('md5', $upload_dir.$data["address"].".png");
+	$data["picture_hash"] = hash_file('md5', $upload_dir.$address.".png");
 
 	http_response_code(200);
 	echo (json_encode($data));
@@ -151,7 +151,7 @@ if($_GET["do"]=="get_hash_for_user"){
 			"id"=> $row["id"],
 			"content" => $content,
 			"email" => $row["email"],
-			"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
+			"profile_picture" => hash_file('md5', $upload_dir.$address.".png")
 		);
 		$hash = hash_value($to_hash);
 	}
