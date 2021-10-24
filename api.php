@@ -38,12 +38,13 @@ if($_GET["do"]=="get_profile"){
 		$data["content"] = $row["content"];
 		$data["address"] = $row["address"];
 		$data["hash"] = $hash;
+		$data["picture_hash"] = hash_file('md5', $upload_dir.$data["address"].".png");
 		
 		$to_hash = array(
 			"id"=> $data["id"],
 			"content" => $data["content"],
 			"email" => $data["email"],
-			"profile_picture" => hash_file('md5', $upload_dir.$data["address"].".png")
+			"profile_picture" => $data["picture_hash"]
 		);
 		$data["verified"] = hash_verify($to_hash, $hash);
 	}
@@ -127,6 +128,7 @@ if($_GET["do"]=="get_hash"){
 
 	$data["result"] = true;
 	$data["hash"] = $hash;
+	$data["picture_hash"] = hash_file('md5', $upload_dir.$data["address"].".png");
 
 	http_response_code(200);
 	echo (json_encode($data));
