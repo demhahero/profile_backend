@@ -24,9 +24,6 @@ if($_FILES['picture'])
         $random_name = $_GET['address'].".png";
         $upload_name = $upload_dir.$random_name;
         $upload_name = preg_replace('/\s+/', '-', $upload_name);
-        if(file_exists($upload_name)){
-            unlink($upload_name);
-        }
         if(move_uploaded_file($avatar_tmp_name , $upload_name)) {
             $response = array(
                 "status" => "success",
