@@ -76,9 +76,11 @@ if($_GET["do"]=="update"){
 
 	$address = isset($_GET["address"]) ? $_GET["address"] : "";
 	$id = isset($_GET["id"]) ? $_GET["id"] : "";
-	$content = isset($_POST["content"]) ? $_POST["content"] : "";
 	$email = isset($_GET["email"]) ? $_GET["email"] : "";
-	
+
+	$json_post = json_decode( file_get_contents('php://input') );
+	$content = $json_post->content;
+
 	$to_hash = array(
 		"id"=> $id,
 		"content" => $content,
