@@ -95,9 +95,14 @@ if($_GET["do"]=="update"){
 	if($result->num_rows == 1){
 		$row = $result->fetch_array(MYSQLI_ASSOC);
 
-		$sql = "Update `profiles` set `hash` = '".$hash."', `content` = '".$content."' where `address`='".$address."'";
+		$id = $id != "" ? $id : $row["id"];
+		$email = $email != "" ? $email : $row["email"];
+		$content = $content != "" ? $content : $row["content"];
+		$profile_picture_hash = hash_file('md5', $upload_dir.$address.".png");
+		
+		$sql = "Update `profiles` set `id`='".$id."', `email` = '".$email."', `content` = '".$content."', `profile_picture_hash` = '".$profile_picture_hash."' where `address`='".$address."'";
 		$result = $mysqli->query($sql);
-		$data["result"] = $result;		
+		$data["result"] = $result;
 		$data["hash"] = $hash;
 	}
 	else{
