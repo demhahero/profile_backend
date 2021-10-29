@@ -127,6 +127,17 @@ if($_GET["do"]=="get_hash"){
 	$json_post = json_decode( file_get_contents('php://input') );
 	$content = $json_post->content;
 	
+
+	$sql = "SELECT * FROM `profiles` where `address`='".$address."'";
+	$result = $mysqli->query($sql);
+	if($result->num_rows == 1){
+		$row = $result->fetch_array(MYSQLI_ASSOC);
+
+		$id = $id != "" ? $id : $row["id"];
+		$email = $email != "" ? $email : $row["email"];
+		$content = $content != "" ? $content : $row["content"];
+	}
+
 	$to_hash = array(
 		"id"=> $id,
 		"content" => $content,
