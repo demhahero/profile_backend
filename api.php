@@ -97,7 +97,6 @@ if($_GET["do"]=="update"){
 
 		$id = $id != "" ? $id : $row["id"];
 		$email = $email != "" ? $email : $row["email"];
-		$content = $content != "" ? $content : $row["content"];
 		$profile_picture_hash = hash_file('md5', $upload_dir.$address.".png");
 		
 		$sql = "Update `profiles` set `id`='".$id."', `email` = '".$email."', `content` = '".$content."', `profile_picture_hash` = '".$profile_picture_hash."' where `address`='".$address."'";
@@ -135,7 +134,6 @@ if($_GET["do"]=="get_hash"){
 
 		$id = $id != "" ? $id : $row["id"];
 		$email = $email != "" ? $email : $row["email"];
-		$content = $content != "" ? $content : $row["content"];
 	}
 
 	$to_hash = array(
